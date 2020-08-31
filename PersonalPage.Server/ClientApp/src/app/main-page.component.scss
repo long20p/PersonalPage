@@ -1,0 +1,19 @@
+$bg-img: '../assets/img/default.jpg';
+
+.main-img-bg {
+    background-image: url($bg-img);  
+}
+
+.full-view {
+    height: 100vh;
+}
+
+.promo-bg {
+    @extend .main-img-bg;
+    @extend .full-view;
+}
+
+.btn-position {
+    position: relative;
+    top: 75%;
+}
