@@ -6,16 +6,21 @@ using System.Threading.Tasks;
 
 namespace PersonalPage.Persistence.Repositories
 {
-    public class ArticleRepository : IArticleRepository
+    public class ArticleRepository : RepositoryBase<Article>, IArticleRepository
     {
-        public async Task<Article> Get(string id)
+        public ArticleRepository(IDbContext context) : base(context)
         {
-            throw new NotImplementedException();
+            if (!context.DatabaseExists())
+            {
+                Seed();
+            }
         }
 
-        public async Task<IEnumerable<Article>> GetAll()
+        protected override string CollectionName => "articles";
+
+        public void Seed()
         {
-            return new List<Article>
+            var seeds = new List<Article>
             {
                 new Article
                 {
@@ -56,11 +61,7 @@ Proin semper purus quis suscipit mollis. Etiam eleifend dolor augue. Proin iacul
                     ContentBrief = "Phasellus sit amet varius nisi. Suspendisse erat orci, euismod sed lorem et, facilisis pretium ipsum. Integer imperdiet metus ut massa tincidunt consectetur."
                 }
             };
-        }
-
-        public Task<IEnumerable<Article>> Where(Func<Article, bool> predicate)
-        {
-            throw new NotImplementedException();
+            BulkAdd(seeds).Wait();
         }
     }
 }

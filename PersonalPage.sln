@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalPage.Server", "PersonalPage.Server\PersonalPage.Server.csproj", "{FD6044F1-2259-427F-900C-7F261B506987}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalPage.Persistence", "PersonalPage.Persistence\PersonalPage.Persistence.csproj", "{4CBB13A7-1EB1-4A05-8D05-6A0116A01E0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalPage.Persistence", "PersonalPage.Persistence\PersonalPage.Persistence.csproj", "{4CBB13A7-1EB1-4A05-8D05-6A0116A01E0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalPage.Common", "PersonalPage.Common\PersonalPage.Common.csproj", "{45B597D1-AF7A-47F0-BFA5-E6FF023A8DE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{4CBB13A7-1EB1-4A05-8D05-6A0116A01E0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CBB13A7-1EB1-4A05-8D05-6A0116A01E0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CBB13A7-1EB1-4A05-8D05-6A0116A01E0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45B597D1-AF7A-47F0-BFA5-E6FF023A8DE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45B597D1-AF7A-47F0-BFA5-E6FF023A8DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45B597D1-AF7A-47F0-BFA5-E6FF023A8DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45B597D1-AF7A-47F0-BFA5-E6FF023A8DE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
