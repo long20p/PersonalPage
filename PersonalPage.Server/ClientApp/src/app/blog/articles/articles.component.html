@@ -11,7 +11,7 @@
         <div class="g-bg-white g-pa-30">
           <span class="d-block g-color-gray-dark-v4 g-font-weight-600 g-font-size-12 text-uppercase mb-2">1 June 2017</span>
           <h2 class="h5 g-color-black g-font-weight-600 mb-3">
-            <a class="u-link-v5 g-color-black g-color-primary--hover g-cursor-pointer" [routerLink]="['/article', article.id]">{{ article.title }}</a>
+            <a class="u-link-v5 g-color-black g-color-primary--hover g-cursor-pointer" [routerLink]="['/blog/article', article.uniqueId]">{{ article.title }}</a>
           </h2>
           <p class="g-color-gray-dark-v4 g-line-height-1_8">{{ article.contentBrief }}...</p>
           <a class="g-font-size-13" href="#">Read more...</a>

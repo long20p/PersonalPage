@@ -1,0 +1,57 @@
+﻿@page "/dashboard"
+@model PersonalPage.Server.Pages.AdminModel
+@{
+}
+<!--
+=========================================================
+* Paper Dashboard 2 - v2.0.1
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/paper-dashboard-2
+* Copyright 2020 Creative Tim (https://www.creative-tim.com)
+
+Coded by www.creative-tim.com
+
+ =========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin</title>
+
+    <meta charset="utf-8">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <!-- CSS Files -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/paper-dashboard.min.css?v=2.0.1" rel="stylesheet" />
+    @*<base href="~/" />*@
+</head>
+<body>
+    <div>
+        <component type="typeof(PersonalPage.Server.Admin.Dashboard)" render-mode="Server" />
+    </div>
+
+    <script src="_framework/blazor.server.js"></script>
+
+    <!--   Core JS Files   -->
+    <script src="js/core/jquery.min.js"></script>
+    <script src="js/core/popper.min.js"></script>
+    <script src="js/core/bootstrap.js"></script>
+
+    <!--  Plugins    -->
+    <script src="js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <script src="js/plugins/chartjs.min.js"></script>
+    <script src="js/plugins/bootstrap-notify.js"></script>
+
+    <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
+</body>
+</html>

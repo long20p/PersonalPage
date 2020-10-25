@@ -25,6 +25,8 @@ namespace PersonalPage.Server
             services.Configure<DbSettings>(Configuration.GetSection("Mongo"));
 
             services.AddControllers();
+            services.AddRazorPages();
+            services.AddServerSideBlazor();
 
             services.AddSingleton<IDbContext, DbContext>();
             services.AddTransient<IArticleRepository, ArticleRepository>();
@@ -57,6 +59,9 @@ namespace PersonalPage.Server
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapRazorPages();
+                endpoints.MapBlazorHub();
+                //endpoints.MapFallbackToPage("/Admin");
             });
 
             app.UseSpa(spa =>
