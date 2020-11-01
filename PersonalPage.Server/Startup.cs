@@ -24,6 +24,13 @@ namespace PersonalPage.Server
         {
             services.Configure<DbSettings>(Configuration.GetSection("Mongo"));
 
+            services.AddCors(options =>
+            {
+                var allowedOrigins = Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();
+                options.AddDefaultPolicy(builder => 
+                    builder.WithOrigins(allowedOrigins));
+            });
+
             services.AddControllers();
             services.AddRazorPages();
             services.AddServerSideBlazor();
@@ -32,10 +39,10 @@ namespace PersonalPage.Server
             services.AddTransient<IArticleRepository, ArticleRepository>();
 
             // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "ClientApp/dist/PersonalPage";
-            });
+            //services.AddSpaStaticFiles(configuration =>
+            //{
+            //    configuration.RootPath = "ClientApp/dist/PersonalPage";
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +60,9 @@ namespace PersonalPage.Server
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseSpaStaticFiles();
+            //app.UseSpaStaticFiles();
+
+            app.UseCors();
 
             app.UseRouting();
             app.UseEndpoints(endpoints =>
@@ -64,18 +73,18 @@ namespace PersonalPage.Server
                 //endpoints.MapFallbackToPage("/Admin");
             });
 
-            app.UseSpa(spa =>
-            {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
+            //app.UseSpa(spa =>
+            //{
+            //    // To learn more about options for serving an Angular SPA from ASP.NET Core,
+            //    // see https://go.microsoft.com/fwlink/?linkid=864501
 
-                spa.Options.SourcePath = "ClientApp";
+            //    spa.Options.SourcePath = "ClientApp";
 
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
-            });
+            //    if (env.IsDevelopment())
+            //    {
+            //        spa.UseAngularCliServer(npmScript: "start");
+            //    }
+            //});
         }
     }
 }
