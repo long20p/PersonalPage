@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PersonalPage.Common.Settings;
 using PersonalPage.Persistence.Repositories;
+using PersonalPage.Server.Services;
 
 namespace PersonalPage.Server
 {
@@ -37,6 +38,7 @@ namespace PersonalPage.Server
 
             services.AddSingleton<IDbContext, DbContext>();
             services.AddTransient<IArticleRepository, ArticleRepository>();
+            services.AddTransient<IArticleService, ArticleService>();
 
             // In production, the Angular files will be served from this directory
             //services.AddSpaStaticFiles(configuration =>

@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PersonalPage.Persistence.Repositories;
 using PersonalPage.Server.Models;
+using PersonalPage.Server.Services;
 
 namespace PersonalPage.Server.Controllers
 {
@@ -13,17 +13,17 @@ namespace PersonalPage.Server.Controllers
     [ApiController]
     public class ArticleController : ControllerBase
     {
-        private IArticleRepository articleRepository;
+        private IArticleService articleService;
 
-        public ArticleController(IArticleRepository articleRepository)
+        public ArticleController(IArticleService articleService)
         {
-            this.articleRepository = articleRepository;
+            this.articleService = articleService;
         }
 
         [HttpGet("all")]
         public async Task<IEnumerable<ArticleHeadline>> GetArticles()
         {
-            var articles = await articleRepository.GetAll();
+            var articles = await articleService.GetAllArticles();
             return articles.Select(x => new ArticleHeadline { Title = x.Title, ContentBrief = x.ContentBrief, UniqueId = x.UniqueId });
         }
     }
