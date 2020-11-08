@@ -1,4 +1,4 @@
-﻿@page "/dashboard"
+﻿@page "/"
 @model PersonalPage.Server.Pages.AdminModel
 @{
 }
@@ -35,7 +35,7 @@ Coded by www.creative-tim.com
 </head>
 <body>
     <div>
-        <component type="typeof(PersonalPage.Server.Admin.Dashboard)" render-mode="Server" />
+        <component type="typeof(PersonalPage.Server.Admin.App)" render-mode="Server" />
     </div>
 
     <script src="_framework/blazor.server.js"></script>
@@ -43,7 +43,7 @@ Coded by www.creative-tim.com
     <!--   Core JS Files   -->
     <script src="js/core/jquery.min.js"></script>
     <script src="js/core/popper.min.js"></script>
-    <script src="js/core/bootstrap.js"></script>
+    <script src="js/core/bootstrap.min.js"></script>
 
     <!--  Plugins    -->
     <script src="js/plugins/perfect-scrollbar.jquery.min.js"></script>

@@ -70,7 +70,7 @@ namespace PersonalPage.Server
                 endpoints.MapControllers();
                 endpoints.MapRazorPages();
                 endpoints.MapBlazorHub();
-                //endpoints.MapFallbackToPage("/Admin");
+                endpoints.MapFallbackToPage("/Admin");
             });
 
             //app.UseSpa(spa =>
