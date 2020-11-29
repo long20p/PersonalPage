@@ -9,5 +9,7 @@ namespace PersonalPage.Server.Services
     public interface IArticleService
     {
         Task<IEnumerable<Article>> GetAllArticles();
+        Task<Article> GetArticle(string articleId);
+        Task CreateArticle(Article article);
     }
 }

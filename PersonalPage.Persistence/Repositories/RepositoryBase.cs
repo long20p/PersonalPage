@@ -37,8 +37,7 @@ namespace PersonalPage.Persistence.Repositories
 
         public async Task<T> GetSingle(Expression<Func<T, bool>> predicate)
         {
-            var cursor = await Collection.FindAsync(predicate);
-            return await cursor.FirstOrDefaultAsync();
+            return await Collection.Find(predicate).FirstOrDefaultAsync();
         }
 
         public async Task Update(T item)
@@ -48,8 +47,18 @@ namespace PersonalPage.Persistence.Repositories
 
         public async Task<IEnumerable<T>> Where(Expression<Func<T, bool>> predicate)
         {
-            var cursor = await Collection.FindAsync<T>(predicate);
-            return await cursor.ToListAsync();
+            var results = new List<T>();
+            using (var cursor = await Collection.FindAsync<T>(predicate))
+            {
+                while(await cursor.MoveNextAsync())
+                {
+                    foreach (var item in cursor.Current)
+                    {
+                        results.Add(item);
+                    }
+                }
+            }
+            return results;
         }
     }
 }

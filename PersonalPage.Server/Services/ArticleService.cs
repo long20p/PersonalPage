@@ -16,9 +16,19 @@ namespace PersonalPage.Server.Services
             articleRepository = repository;
         }
 
+        public async Task CreateArticle(Article article)
+        {
+            await articleRepository.Add(article);
+        }
+
         public async Task<IEnumerable<Article>> GetAllArticles()
         {
             return await articleRepository.GetAll();
+        }
+
+        public async Task<Article> GetArticle(string articleId)
+        {
+            return await articleRepository.GetSingle(x => x.UniqueId == articleId);
         }
     }
 }
