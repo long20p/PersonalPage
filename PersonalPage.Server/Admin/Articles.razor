@@ -1,7 +1,85 @@
 ﻿@page "/articles"
 
+@using System.Text; 
+@using Blazored.TextEditor;
+@using PersonalPage.Server.Services;
+@using PersonalPage.Persistence.Models;
+
 <h3>Articles</h3>
 
-@code {
+<div>
+    <label for="@Title"></label>
+    <input type="text" @bind-value="@Title" />
+</div>
+<div>
+    <label for="@Brief"></label>
+    <input type="text" @bind-value="@Brief" />
+</div>
 
+<BlazoredTextEditor @ref="@ArticleEditor">
+    <ToolbarContent>
+        <select class="ql-header">
+            <option selected=""></option>
+            <option value="1"></option>
+            <option value="2"></option>
+            <option value="3"></option>
+            <option value="4"></option>
+            <option value="5"></option>
+        </select>
+        <span class="ql-formats">
+            <button class="ql-bold"></button>
+            <button class="ql-italic"></button>
+            <button class="ql-underline"></button>
+            <button class="ql-strike"></button>
+        </span>
+        <span class="ql-formats">
+            <select class="ql-color"></select>
+            <select class="ql-background"></select>
+        </span>
+        <span class="ql-formats">
+            <button class="ql-list" value="ordered"></button>
+            <button class="ql-list" value="bullet"></button>
+        </span>
+        <span class="ql-formats">
+            <button class="ql-link"></button>
+        </span>
+    </ToolbarContent>
+    <EditorContent>
+        <h4>This Toolbar works with HTML</h4>
+        <a href="http://BlazorHelpWebsite.com">
+            BlazorHelpWebsite.com
+        </a>
+    </EditorContent>
+</BlazoredTextEditor>
+<br />
+<button class="btn btn-primary" @onclick="SaveArticle">Create</button>
+<br />
+
+
+@code {
+    public string Title { get; set; }
+    public string Brief { get; set; }
+    public BlazoredTextEditor ArticleEditor { get; set; }
+
+
+    [Inject]
+    public IArticleService ArticleService { get; set; }
+
+    [Inject]
+    public NavigationManager NavManager { get; set; }
+
+    public async Task SaveArticle()
+    {
+        var html = await this.ArticleEditor.GetHTML();
+        var article = new Article
+        {
+            Title = Title,
+            UniqueId = Convert.ToBase64String(Encoding.Unicode.GetBytes(Title)),
+            ContentBrief = Brief,
+            Content = html
+        };
+        await ArticleService.CreateArticle(article);
+        NavManager.NavigateTo("/");
+        StateHasChanged();
+    }
 }
