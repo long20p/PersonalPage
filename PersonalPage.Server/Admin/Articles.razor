@@ -1,21 +1,21 @@
 ﻿@page "/articles"
 
-@using System.Text; 
 @using Blazored.TextEditor;
 @using PersonalPage.Server.Services;
 @using PersonalPage.Persistence.Models;
 
 <h3>Articles</h3>
 
-<div>
-    <label for="@Title"></label>
-    <input type="text" @bind-value="@Title" />
+<div class="container-fluid">
+    <div class="row site-form-row">
+        <span class="col-sm-2 col-lg-1 align-self-center">Title</span>
+        <input class="col-sm-6 form-control" type="text" @bind-value="@Title" />
+    </div>
+    <div class="row align-items-center site-form-row">
+        <span class="col-sm-2 col-lg-1 align-self-center">Summary</span>
+        <input class="col-sm-10 col-lg-11 form-control" type="text" @bind-value="@Brief" />
+    </div>
 </div>
-<div>
-    <label for="@Brief"></label>
-    <input type="text" @bind-value="@Brief" />
-</div>
-
 <BlazoredTextEditor @ref="@ArticleEditor">
     <ToolbarContent>
         <select class="ql-header">
@@ -45,41 +45,34 @@
         </span>
     </ToolbarContent>
     <EditorContent>
-        <h4>This Toolbar works with HTML</h4>
-        <a href="http://BlazorHelpWebsite.com">
-            BlazorHelpWebsite.com
-        </a>
     </EditorContent>
 </BlazoredTextEditor>
-<br />
 <button class="btn btn-primary" @onclick="SaveArticle">Create</button>
-<br />
 
 
-@code {
-    public string Title { get; set; }
-    public string Brief { get; set; }
-    public BlazoredTextEditor ArticleEditor { get; set; }
+    @code {
+        public string Title { get; set; }
+        public string Brief { get; set; }
+        public BlazoredTextEditor ArticleEditor { get; set; }
 
 
-    [Inject]
-    public IArticleService ArticleService { get; set; }
+        [Inject]
+        public IArticleService ArticleService { get; set; }
 
-    [Inject]
-    public NavigationManager NavManager { get; set; }
+        [Inject]
+        public NavigationManager NavManager { get; set; }
 
-    public async Task SaveArticle()
-    {
-        var html = await this.ArticleEditor.GetHTML();
-        var article = new Article
+        public async Task SaveArticle()
         {
-            Title = Title,
-            UniqueId = Convert.ToBase64String(Encoding.Unicode.GetBytes(Title)),
-            ContentBrief = Brief,
-            Content = html
-        };
-        await ArticleService.CreateArticle(article);
-        NavManager.NavigateTo("/");
-        StateHasChanged();
+            var html = await this.ArticleEditor.GetHTML();
+            var article = new Article
+            {
+                Title = Title,
+                ContentBrief = Brief,
+                Content = html
+            };
+            await ArticleService.CreateArticle(article);
+            NavManager.NavigateTo("/");
+            StateHasChanged();
+        }
     }
-}

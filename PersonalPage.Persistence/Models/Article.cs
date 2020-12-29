@@ -13,5 +13,6 @@ namespace PersonalPage.Persistence.Models
         public string ContentBrief { get; set; }
         public string Category { get; set; }
         public List<string> Tags { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }

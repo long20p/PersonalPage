@@ -25,13 +25,14 @@ namespace PersonalPage.Server.Controllers
         public async Task<IEnumerable<ArticleHeadline>> GetArticles()
         {
             var articles = await articleService.GetAllArticles();
-            return articles.Select(x => new ArticleHeadline { Title = x.Title, ContentBrief = x.ContentBrief, UniqueId = x.UniqueId });
+            return articles.Select(ArticleHeadline.ToHeadline);
         }
 
         [HttpGet("{articleId}")]
-        public async Task<Article> GetArticle(string articleId)
+        public async Task<ArticleModel> GetArticle(string articleId)
         {
-            return await articleService.GetArticle(articleId);
+            var article = await articleService.GetArticle(articleId);
+            return ArticleModel.ToModel(article);
         }
     }
 }

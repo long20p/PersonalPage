@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using PersonalPage.Common.Settings;
 using PersonalPage.Persistence.Repositories;
 using PersonalPage.Server.Services;
+using System.Text;
 
 namespace PersonalPage.Server
 {
@@ -74,6 +75,8 @@ namespace PersonalPage.Server
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/Admin");
             });
+
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
             //app.UseSpa(spa =>
             //{
